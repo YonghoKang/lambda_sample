@@ -22,6 +22,7 @@ int main()
         [](const char* functionName, int param)->int
         {
             std::cout << functionName << " : " << param << std::endl;
+            return 0;
         }
         );
 
