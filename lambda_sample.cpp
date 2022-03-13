@@ -1,25 +1,45 @@
 ﻿#include <iostream>
+#include <functional>
 
-int TestFunc(int param)
+//int TestFunc1(int param)
+//{
+//    std::cout << "Function Pointer" << param << std::endl;
+//    return param;
+//}
+
+void TestFunc2(const char* functionName, std::function<int(const char*, int)> param)
 {
-    std::cout << "Function Pointer" << param << std::endl;
-    return param;
+    std::cout << functionName << std::endl;
+    param("Hello", 10);
 }
 
 int main()
 {
-    auto func = [](int param) -> int
-    {
-        std::cout << "Lambda: " << param << std::endl;
-        return param;
-    };
+    std::cout << "***Begin***" << std::endl;
+
+    ::TestFunc2(
+        "TestFunc2()",
+        [](const char* functionName, int param)->int
+        {
+            std::cout << functionName << " : " << param << std::endl;
+        }
+        );
+
+
+    std::cout << "***End***" << std::endl;
+
+    //auto func = [](int param) -> int
+    //{
+    //    std::cout << "Lambda: " << param << std::endl;
+    //    return param;
+    //};
 
     //call lambda
-    func(5);
+    //func(5);
 
-    //call by function pointer
-    auto functionPointer = TestFunc;
-    functionPointer(10);
+    ////call by function pointer
+    //auto functionPointer = TestFunc1;
+    //functionPointer(10);
 
     return 0;
 }
